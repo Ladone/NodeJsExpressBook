@@ -1,14 +1,15 @@
 const express = require('express');
 const expressHandlebars = require('express-handlebars');
-const {create} = require("express-handlebars");
 
 const app = express();
 const port = process.env.port || 3000;
 
-app.engine('handlebars', expressHandlebars({
+app.engine('hbs', expressHandlebars.engine({
     defaultLayout: 'main',
-}).create());
-app.set('view engine', 'handlebars');
+    extname: '.hbs',
+}));
+
+app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => res.render('home'));
 
